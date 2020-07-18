@@ -23,6 +23,9 @@
 		46DE1EC724C2319A0015D4E7 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EC624C2319A0015D4E7 /* Cancelable.swift */; };
 		46DE1EC924C231C50015D4E7 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EC824C231C50015D4E7 /* ConnectionError.swift */; };
 		46DE1ECC24C232F00015D4E7 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ECB24C232F00015D4E7 /* AppConfiguration.swift */; };
+		46DE1ECF24C2BF180015D4E7 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ECE24C2BF180015D4E7 /* AppDIContainer.swift */; };
+		46DE1ED124C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ED024C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift */; };
+		46DE1ED324C2C08D0015D4E7 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ED224C2C08D0015D4E7 /* AppFlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		46DE1EC624C2319A0015D4E7 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		46DE1EC824C231C50015D4E7 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		46DE1ECB24C232F00015D4E7 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		46DE1ECE24C2BF180015D4E7 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		46DE1ED024C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesSceneDIContainer.swift; sourceTree = "<group>"; };
+		46DE1ED224C2C08D0015D4E7 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,10 +174,21 @@
 		46DE1ECA24C232CA0015D4E7 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				46DE1ECD24C2BEF10015D4E7 /* DIContainer */,
 				46DE1E8C24C20C580015D4E7 /* AppDelegate.swift */,
 				46DE1ECB24C232F00015D4E7 /* AppConfiguration.swift */,
+				46DE1ED224C2C08D0015D4E7 /* AppFlowCoordinator.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		46DE1ECD24C2BEF10015D4E7 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1ECE24C2BF180015D4E7 /* AppDIContainer.swift */,
+				46DE1ED024C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,11 +291,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46DE1ED324C2C08D0015D4E7 /* AppFlowCoordinator.swift in Sources */,
+				46DE1ECF24C2BF180015D4E7 /* AppDIContainer.swift in Sources */,
 				46DE1EB824C213BF0015D4E7 /* DataTransferService.swift in Sources */,
 				46DE1EC724C2319A0015D4E7 /* Cancelable.swift in Sources */,
 				46DE1EC924C231C50015D4E7 /* ConnectionError.swift in Sources */,
 				46DE1ECC24C232F00015D4E7 /* AppConfiguration.swift in Sources */,
 				46DE1EC224C229C50015D4E7 /* ArticleResponseDTO+Mapping.swift in Sources */,
+				46DE1ED124C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift in Sources */,
 				46DE1EB924C213BF0015D4E7 /* NetworkService.swift in Sources */,
 				46DE1EB624C213BF0015D4E7 /* NetworkConfig.swift in Sources */,
 				46DE1E9724C20C580015D4E7 /* BlogApp.xcdatamodeld in Sources */,
