@@ -20,6 +20,8 @@ class AppFlowCoordinator {
   }
   
   func start() {
-    //TODO : Implement Start
+    let articlesSceneDIContainer = appDIContainer.makeArticlesSceneDIContainer()
+    let flow = articlesSceneDIContainer.makeArticlesListFlowCoordinator(navigationController: navigationController)
+    flow.start()
   }
 }

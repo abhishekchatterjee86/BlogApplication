@@ -19,4 +19,21 @@ final class ArticlesSceneDIContainer {
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
   }
+  
+  // MARK: - Movies List
+  func makeArticlesListViewController(closures: ArticlesListViewModelClosures) -> ArticlesListViewController {
+      return ArticlesListViewController.create(with: makeArticlesListViewModel(closures: closures))
+  }
+  
+  func makeArticlesListViewModel(closures: ArticlesListViewModelClosures) -> ArticlesListViewModel {
+    return DefaultArticlesListViewModel()
+  }
+  
+  // MARK: - Flow Coordinators
+  func makeArticlesListFlowCoordinator(navigationController: UINavigationController) -> ArticlesListFlowCoordinator {
+    return ArticlesListFlowCoordinator(navigationController: navigationController,
+                                       dependencies: self)
+  }
 }
+
+extension ArticlesSceneDIContainer: ArticlesListFlowCoordinatorDependencies {}

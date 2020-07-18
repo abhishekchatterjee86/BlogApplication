@@ -26,6 +26,13 @@
 		46DE1ECF24C2BF180015D4E7 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ECE24C2BF180015D4E7 /* AppDIContainer.swift */; };
 		46DE1ED124C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ED024C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift */; };
 		46DE1ED324C2C08D0015D4E7 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ED224C2C08D0015D4E7 /* AppFlowCoordinator.swift */; };
+		46DE1ED824C2C4150015D4E7 /* ArticlesListFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1ED724C2C4150015D4E7 /* ArticlesListFlowCoordinator.swift */; };
+		46DE1EDD24C2C4F10015D4E7 /* ArticlesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EDC24C2C4F10015D4E7 /* ArticlesListViewController.swift */; };
+		46DE1EDF24C2C50D0015D4E7 /* ArticlesListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DE1EDE24C2C50D0015D4E7 /* ArticlesListViewController.storyboard */; };
+		46DE1EE124C2C7870015D4E7 /* ArticlesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EE024C2C7870015D4E7 /* ArticlesListViewModel.swift */; };
+		46DE1EE424C2D45D0015D4E7 /* ArticlesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EE324C2D45D0015D4E7 /* ArticlesListTableViewCell.swift */; };
+		46DE1EE824C2E6AC0015D4E7 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EE724C2E6AC0015D4E7 /* StoryboardInstantiable.swift */; };
+		46DE1EEA24C2E6DA0015D4E7 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE1EE924C2E6DA0015D4E7 /* Alertable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +69,13 @@
 		46DE1ECE24C2BF180015D4E7 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		46DE1ED024C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesSceneDIContainer.swift; sourceTree = "<group>"; };
 		46DE1ED224C2C08D0015D4E7 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		46DE1ED724C2C4150015D4E7 /* ArticlesListFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListFlowCoordinator.swift; sourceTree = "<group>"; };
+		46DE1EDC24C2C4F10015D4E7 /* ArticlesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewController.swift; sourceTree = "<group>"; };
+		46DE1EDE24C2C50D0015D4E7 /* ArticlesListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArticlesListViewController.storyboard; sourceTree = "<group>"; };
+		46DE1EE024C2C7870015D4E7 /* ArticlesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListViewModel.swift; sourceTree = "<group>"; };
+		46DE1EE324C2D45D0015D4E7 /* ArticlesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListTableViewCell.swift; sourceTree = "<group>"; };
+		46DE1EE724C2E6AC0015D4E7 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		46DE1EE924C2E6DA0015D4E7 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				46DE1ECA24C232CA0015D4E7 /* Application */,
+				46DE1ED424C2C1E00015D4E7 /* Presentation */,
 				46DE1EB124C213400015D4E7 /* Networking */,
 				46DE1EBA24C2162B0015D4E7 /* Data */,
 				46DE1EC524C231520015D4E7 /* Common */,
@@ -191,6 +206,84 @@
 			path = DIContainer;
 			sourceTree = "<group>";
 		};
+		46DE1ED424C2C1E00015D4E7 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1ED524C2C39B0015D4E7 /* ArticlesScene */,
+				46DE1EE524C2D47E0015D4E7 /* Utils */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		46DE1ED524C2C39B0015D4E7 /* ArticlesScene */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1ED624C2C3AC0015D4E7 /* Flows */,
+				46DE1ED924C2C4840015D4E7 /* ArticlesList */,
+			);
+			path = ArticlesScene;
+			sourceTree = "<group>";
+		};
+		46DE1ED624C2C3AC0015D4E7 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1ED724C2C4150015D4E7 /* ArticlesListFlowCoordinator.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		46DE1ED924C2C4840015D4E7 /* ArticlesList */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EDA24C2C4AC0015D4E7 /* ViewModel */,
+				46DE1EDB24C2C4B60015D4E7 /* View */,
+			);
+			path = ArticlesList;
+			sourceTree = "<group>";
+		};
+		46DE1EDA24C2C4AC0015D4E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EE024C2C7870015D4E7 /* ArticlesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		46DE1EDB24C2C4B60015D4E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EDC24C2C4F10015D4E7 /* ArticlesListViewController.swift */,
+				46DE1EDE24C2C50D0015D4E7 /* ArticlesListViewController.storyboard */,
+				46DE1EE224C2D4270015D4E7 /* TableCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		46DE1EE224C2D4270015D4E7 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EE324C2D45D0015D4E7 /* ArticlesListTableViewCell.swift */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		46DE1EE524C2D47E0015D4E7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EE624C2D4AB0015D4E7 /* Protocols */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		46DE1EE624C2D4AB0015D4E7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				46DE1EE724C2E6AC0015D4E7 /* StoryboardInstantiable.swift */,
+				46DE1EE924C2E6DA0015D4E7 /* Alertable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46DE1EDF24C2C50D0015D4E7 /* ArticlesListViewController.storyboard in Resources */,
 				46DE1E9C24C20C620015D4E7 /* LaunchScreen.storyboard in Resources */,
 				46DE1E9924C20C620015D4E7 /* Assets.xcassets in Resources */,
 			);
@@ -293,15 +387,21 @@
 			files = (
 				46DE1ED324C2C08D0015D4E7 /* AppFlowCoordinator.swift in Sources */,
 				46DE1ECF24C2BF180015D4E7 /* AppDIContainer.swift in Sources */,
+				46DE1EDD24C2C4F10015D4E7 /* ArticlesListViewController.swift in Sources */,
 				46DE1EB824C213BF0015D4E7 /* DataTransferService.swift in Sources */,
+				46DE1EE824C2E6AC0015D4E7 /* StoryboardInstantiable.swift in Sources */,
+				46DE1EE424C2D45D0015D4E7 /* ArticlesListTableViewCell.swift in Sources */,
 				46DE1EC724C2319A0015D4E7 /* Cancelable.swift in Sources */,
 				46DE1EC924C231C50015D4E7 /* ConnectionError.swift in Sources */,
+				46DE1EEA24C2E6DA0015D4E7 /* Alertable.swift in Sources */,
 				46DE1ECC24C232F00015D4E7 /* AppConfiguration.swift in Sources */,
 				46DE1EC224C229C50015D4E7 /* ArticleResponseDTO+Mapping.swift in Sources */,
 				46DE1ED124C2BF7A0015D4E7 /* ArticlesSceneDIContainer.swift in Sources */,
 				46DE1EB924C213BF0015D4E7 /* NetworkService.swift in Sources */,
+				46DE1EE124C2C7870015D4E7 /* ArticlesListViewModel.swift in Sources */,
 				46DE1EB624C213BF0015D4E7 /* NetworkConfig.swift in Sources */,
 				46DE1E9724C20C580015D4E7 /* BlogApp.xcdatamodeld in Sources */,
+				46DE1ED824C2C4150015D4E7 /* ArticlesListFlowCoordinator.swift in Sources */,
 				46DE1EBD24C2167F0015D4E7 /* APIEndPoints.swift in Sources */,
 				46DE1E8D24C20C580015D4E7 /* AppDelegate.swift in Sources */,
 				46DE1EB724C213BF0015D4E7 /* Endpoint.swift in Sources */,
