@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public enum DataTransferError: Error {
   case noResponse
@@ -19,7 +20,7 @@ public protocol DataTransferService {
   typealias CompletionHandler<T> = (Result<T, DataTransferError>) -> Void
   
   @discardableResult
-  func request<T: Decodable, E: ResponseRequestable>(with endpoint: E,
+  func request<T: Mappable, E: ResponseRequestable>(with endpoint: E,
                                                      completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T
   @discardableResult
   func request<E: ResponseRequestable>(with endpoint: E,
@@ -31,7 +32,7 @@ public protocol DataTransferErrorResolver {
 }
 
 public protocol ResponseDecoder {
-  func decode<T: Decodable>(_ data: Data) throws -> T
+  func decode<T: Mappable>(_ data: Data) throws -> T
 }
 
 public protocol DataTransferErrorLogger {
@@ -55,7 +56,7 @@ public final class DefaultDataTransferService {
 
 extension DefaultDataTransferService: DataTransferService {
   
-  public func request<T: Decodable, E: ResponseRequestable>(with endpoint: E,
+  public func request<T: Mappable, E: ResponseRequestable>(with endpoint: E,
                                                             completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T {
     
     return self.networkService.request(endpoint: endpoint) { result in
@@ -85,7 +86,7 @@ extension DefaultDataTransferService: DataTransferService {
   }
   
   // MARK: - Private
-  private func decode<T: Decodable>(data: Data?, decoder: ResponseDecoder) -> Result<T, DataTransferError> {
+  private func decode<T: Mappable>(data: Data?, decoder: ResponseDecoder) -> Result<T, DataTransferError> {
     do {
       guard let data = data else { return .failure(.noResponse) }
       let result: T = try decoder.decode(data)
@@ -124,8 +125,9 @@ public class DefaultDataTransferErrorResolver: DataTransferErrorResolver {
 public class JSONResponseDecoder: ResponseDecoder {
   private let jsonDecoder = JSONDecoder()
   public init() { }
-  public func decode<T: Decodable>(_ data: Data) throws -> T {
-    return try jsonDecoder.decode(T.self, from: data)
+  public func decode<T: Mappable>(_ data: Data) throws -> T {
+    let json = JSON(data)
+    return T(json: json)
   }
 }
 
@@ -135,7 +137,7 @@ public class RawDataResponseDecoder: ResponseDecoder {
   enum CodingKeys: String, CodingKey {
     case `default` = ""
   }
-  public func decode<T: Decodable>(_ data: Data) throws -> T {
+  public func decode<T: Mappable>(_ data: Data) throws -> T {
     if T.self is Data.Type, let data = data as? T {
       return data
     } else {

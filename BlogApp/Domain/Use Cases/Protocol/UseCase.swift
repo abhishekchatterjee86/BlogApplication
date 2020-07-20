@@ -1,5 +1,5 @@
 //
-//  UserResponseDTO.swift
+//  UseCase.swift
 //  BlogApp
 //
 //  Created by Abhishek on 18/07/20.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct UserResponseDTO: Decodable {
-
+public protocol UseCase {
+  @discardableResult
+  func start() -> Cancelable?
 }

@@ -10,5 +10,4 @@ import Foundation
 
 struct APIRequestDTO: Encodable {
   let page: Int
-  let limit: Int
 }

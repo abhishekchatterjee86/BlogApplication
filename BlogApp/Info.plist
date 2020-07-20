@@ -4,6 +4,10 @@
 <dict>
 	<key>ApiBaseURL</key>
 	<string>$(API_BASE_URL)</string>
+	<key>ImageBaseURL</key>
+	<string>$(IMAGE_URL)</string>
+	<key>Limit</key>
+	<string>10</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -41,5 +45,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
