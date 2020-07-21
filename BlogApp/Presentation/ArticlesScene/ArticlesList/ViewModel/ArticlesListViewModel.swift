@@ -13,13 +13,14 @@ struct ArticlesListViewModelClosures {
 }
 
 enum ArticleListViewModelLoading {
-    case fullScreen
-    case nextPage
+  case fullScreen
+  case nextPage
 }
 
 protocol ArticlesListViewModelInput {
   func didLoadNextPage()
   func didFetchArticles()
+  func didSelectUsersList()
 }
 
 protocol ArticlesListViewModelOutput {
@@ -88,13 +89,13 @@ final class DefaultArticlesListViewModel: ArticlesListViewModel {
   }
   
   private func resetPages() {
-      currentPage = 0
-      items.value.removeAll()
+    currentPage = 0
+    items.value.removeAll()
   }
   
   private func update() {
-      resetPages()
-      load(loadingType: .fullScreen)
+    resetPages()
+    load(loadingType: .fullScreen)
   }
   
   private func handle(error: Error) {
@@ -106,11 +107,15 @@ final class DefaultArticlesListViewModel: ArticlesListViewModel {
 
 extension DefaultArticlesListViewModel {
   func didLoadNextPage() {
-      guard loadingType.value == .none else { return }
-      load(loadingType: .nextPage)
+    guard loadingType.value == .none else { return }
+    load(loadingType: .nextPage)
   }
   
   func didFetchArticles() {
     load(loadingType: .fullScreen)
+  }
+  
+  func didSelectUsersList() {
+    closures?.showUsersList()
   }
 }

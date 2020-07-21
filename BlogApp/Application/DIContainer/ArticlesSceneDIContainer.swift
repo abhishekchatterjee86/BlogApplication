@@ -26,6 +26,10 @@ final class ArticlesSceneDIContainer {
     return DefaultFetchArticlesUseCase(articlesRepository: makeArticlesListRepository())
   }
   
+  func makeFetchUsersUseCase() -> FetchUsersUseCase {
+    return DefaultFetchUsersUseCase(usersListRepository: makeUsersListRepository())
+  }
+  
   // MARK: - Repositories
   func makeArticlesListRepository() -> ArticlesListRepository {
     return DefaultArticlesListRepository(dataTransferService: dependencies.apiDataTransferService)
@@ -35,13 +39,26 @@ final class ArticlesSceneDIContainer {
       return DefaultImagesRepository(dataTransferService: dependencies.imageDataTransferService)
   }
   
+  func makeUsersListRepository() -> UsersListRepository {
+    return DefaultUsersListRepository(dataTransferService: dependencies.apiDataTransferService)
+  }
+  
   // MARK: - Articles List
   func makeArticlesListViewController(closures: ArticlesListViewModelClosures) -> ArticlesListViewController {
     return ArticlesListViewController.create(with: makeArticlesListViewModel(closures: closures), imagesRepository: makeImagesRepository())
   }
   
   func makeArticlesListViewModel(closures: ArticlesListViewModelClosures) -> ArticlesListViewModel {
-    return DefaultArticlesListViewModel(articlesUseCase: makeFetchArticlesUseCase())
+    return DefaultArticlesListViewModel(articlesUseCase: makeFetchArticlesUseCase(), closures: closures)
+  }
+  
+  // MARK: - Articles List
+  func makeUsersListViewController(closures: UsersListViewModelClosures) -> UsersListViewController {
+    return UsersListViewController.create(with: makeUsersListViewModel(closures: closures))
+  }
+  
+  func makeUsersListViewModel(closures: UsersListViewModelClosures) -> UsersListViewModel {
+    return DefaultUsersListViewModel(usersUseCase: makeFetchUsersUseCase())
   }
   
   // MARK: - Flow Coordinators

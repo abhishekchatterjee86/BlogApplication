@@ -10,6 +10,7 @@ import UIKit
 
 protocol ArticlesListFlowCoordinatorDependencies  {
   func makeArticlesListViewController(closures: ArticlesListViewModelClosures) -> ArticlesListViewController
+  func makeUsersListViewController(closures: UsersListViewModelClosures) -> UsersListViewController
 }
 
 class ArticlesListFlowCoordinator {
@@ -32,8 +33,11 @@ class ArticlesListFlowCoordinator {
     navigationController?.pushViewController(vc, animated: false)
     cityListVC = vc
   }
-  
-  private func showUsersList() {
 
+  private func showUsersList() {
+    let closures = UsersListViewModelClosures()
+
+    let vc = dependencies.makeUsersListViewController(closures: closures)
+    navigationController?.pushViewController(vc, animated: true)
   }
 }

@@ -17,7 +17,7 @@ struct APIEndpoints {
                     queryParametersEncodable: articlesRequestDTO)
   }
   
-  static func getUsers(with usersRequestDTO: APIRequestDTO) -> Endpoint<User> {
+  static func getUsers(with usersRequestDTO: APIRequestDTO) -> Endpoint<UsersPage> {
     
     return Endpoint(path: "jet2/api/v1/users/",
                     method: .get,

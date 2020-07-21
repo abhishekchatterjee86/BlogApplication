@@ -49,32 +49,6 @@ struct Media: Mappable {
   }
 }
 
-struct User: Mappable {
-  let id: String
-  let blogId: String
-  let createdAt: Date
-  let firstName: String
-  let lastName: String
-  let avatarImagePath: String?
-  let city: String
-  let designation: String
-  let about: String
-  
-  init(json: JSON) {
-    id = json["id"].stringValue
-    blogId = json["blogId"].stringValue
-    createdAt = json["createdAt"].stringValue.toDate() ?? Date()
-    firstName = json["name"].stringValue
-    lastName = json["lastname"].stringValue
-    city = json["city"].stringValue
-    designation = json["designation"].stringValue
-    about = json["about"].stringValue
-    avatarImagePath = json["avatar"]
-      .stringValue
-      .replacingOccurrences(of: "https://s3.amazonaws.com/uifaces/faces/twitter/", with: "")
-  }
-}
-
 struct ArticlesPage: Mappable {
   let articles: [Article]
 
@@ -87,8 +61,3 @@ extension Data: Mappable {
   public init(json: JSON) { self =  Data.init() }
 }
 
-extension Article: Equatable {
-  static func ==(lhs: Article, rhs: Article) -> Bool {
-    return lhs.id == rhs.id
-  }
-}

@@ -1,28 +1,25 @@
 //
-//  ArticlesListViewController.swift
+//  UsersListViewController.swift
 //  BlogApp
 //
-//  Created by Abhishek on 18/07/20.
+//  Created by Abhishek on 21/07/20.
 //  Copyright © 2020 Abhishek Chatterjee. All rights reserved.
 //
 
 import UIKit
 
-class ArticlesListViewController: UITableViewController, StoryboardInstantiable, Alertable {
+class UsersListViewController: UITableViewController, StoryboardInstantiable, Alertable {
   
   var isLoading = false
-  var imagesRepository: ImagesRepository?
   var nextPageLoadingSpinner: UIActivityIndicatorView?
   
-  private var viewModel: ArticlesListViewModel!
+  private var viewModel: UsersListViewModel!
   
   // MARK: - Lifecycle
   
-  static func create(with viewModel: ArticlesListViewModel,
-                     imagesRepository: ImagesRepository) -> ArticlesListViewController {
-    let view = ArticlesListViewController.instantiateViewController()
+  static func create(with viewModel: UsersListViewModel) -> UsersListViewController {
+    let view = UsersListViewController.instantiateViewController()
     view.viewModel = viewModel
-    view.imagesRepository = imagesRepository
     return view
   }
   
@@ -32,23 +29,16 @@ class ArticlesListViewController: UITableViewController, StoryboardInstantiable,
     title = viewModel.screenTitle
     bind(to: viewModel)
     
-    let usersListBarButtonItem = UIBarButtonItem(title: "Users List", style: .plain, target: self, action: #selector(self.showUsersList));
-    self.navigationItem.leftBarButtonItem  = usersListBarButtonItem
-    
     let loadMoreBarButtonItem = UIBarButtonItem(title: "Load More", style: .plain, target: self, action: #selector(self.loadMore));
     self.navigationItem.rightBarButtonItem  = loadMoreBarButtonItem
     
-    self.viewModel.didFetchArticles()
+    self.viewModel.didFetchUsersList()
   }
   
-  private func bind(to viewModel: ArticlesListViewModel) {
+  private func bind(to viewModel: UsersListViewModel) {
     viewModel.items.observe(on: self) { [weak self] _ in self?.tableView.reloadData() }
     viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
     viewModel.loadingType.observe(on: self) { [weak self] in self?.update(isLoadingNextPage: $0 == .nextPage) }
-  }
-  
-  @objc func showUsersList() {
-    viewModel.didSelectUsersList()
   }
   
   @objc func loadMore() {
@@ -74,7 +64,7 @@ class ArticlesListViewController: UITableViewController, StoryboardInstantiable,
   }
 }
 
-extension ArticlesListViewController {
+extension UsersListViewController {
   // MARK: - Table view data source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,12 +72,11 @@ extension ArticlesListViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticlesListTableViewCell.reuseIdentifier, for: indexPath) as? ArticlesListTableViewCell else {
-      fatalError("Cannot dequeue reusable cell \(ArticlesListTableViewCell.self) with reuseIdentifier: \(ArticlesListTableViewCell.reuseIdentifier)")
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: UsersListTableViewCell.reuseIdentifier, for: indexPath) as? UsersListTableViewCell else {
+      fatalError("Cannot dequeue reusable cell \(UsersListTableViewCell.self) with reuseIdentifier: \(UsersListTableViewCell.reuseIdentifier)")
     }
     
-    cell.fill(with: viewModel.items.value[indexPath.row],
-              imagesRepository: imagesRepository)
+    cell.fill(with: viewModel.items.value[indexPath.row])
     
     return cell
   }
