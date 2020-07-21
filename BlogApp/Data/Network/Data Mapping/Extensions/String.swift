@@ -8,19 +8,15 @@
 
 import Foundation
 
-extension Int {
-  var roundedWithAbbreviations: String {
-    let number = Double(self)
-    let thousand = number / 1000
-    let million = number / 1000000
-    if million >= 1.0 {
-      return "\(round(million*10)/10)M"
-    }
-    else if thousand >= 1.0 {
-      return "\(round(thousand*10)/10)K"
-    }
-    else {
-      return "\(self)"
-    }
+extension String {
+  func toDate(withFormat format: String = "yyyy-MM-dd'T'HH:mm:ssZ") -> Date? {
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.dateFormat = format
+    let date = dateFormatter.date(from: self)
+    
+    return date
   }
 }
+

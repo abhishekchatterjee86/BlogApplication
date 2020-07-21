@@ -11,6 +11,7 @@ import Foundation
 struct ArticleViewModel {
   let userAvatarPath: String?
   let userName: String
+  let createdDate: String
   let userDesignation: String
   let articleImagePath: String?
   let articleContent: String
@@ -24,6 +25,7 @@ extension ArticleViewModel {
   init(article: Article) {
     self.userAvatarPath = article.user.avatarImagePath
     self.userName = article.user.firstName + article.user.lastName
+    self.createdDate = article.createdAt.offsetFrom()
     self.userDesignation = article.user.designation
     self.articleImagePath = article.media?.imagePath
     self.articleContent = article.content

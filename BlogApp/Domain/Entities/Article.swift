@@ -12,7 +12,7 @@ import SwiftyJSON
 struct Article: Mappable {
   let id: String
   let content: String
-//  let createdAt: Date
+  let createdAt: Date
   let comments: Int
   let likes: Int
   let media: Media?
@@ -21,7 +21,7 @@ struct Article: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     content = json["content"].stringValue
-//    createdAt = json["createdAt"].
+    createdAt = json["createdAt"].stringValue.toDate() ?? Date()
     comments = json["comments"].intValue
     likes = json["likes"].intValue
     media = json["media"].array?.first.map({ Media(json: $0) })
@@ -32,7 +32,7 @@ struct Article: Mappable {
 struct Media: Mappable {
   let id: String
   let blogId: String
-//  let createdAt: Date
+  let createdAt: Date
   let imagePath: String
   let title: String
   let mediaUrl: String
@@ -40,6 +40,7 @@ struct Media: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     blogId = json["blogId"].stringValue
+    createdAt = json["createdAt"].stringValue.toDate() ?? Date()
     title = json["title"].stringValue
     mediaUrl = json["url"].stringValue
     imagePath = json["image"]
@@ -51,7 +52,7 @@ struct Media: Mappable {
 struct User: Mappable {
   let id: String
   let blogId: String
-//  let createdAt: Date
+  let createdAt: Date
   let firstName: String
   let lastName: String
   let avatarImagePath: String?
@@ -62,6 +63,7 @@ struct User: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     blogId = json["blogId"].stringValue
+    createdAt = json["createdAt"].stringValue.toDate() ?? Date()
     firstName = json["name"].stringValue
     lastName = json["lastname"].stringValue
     city = json["city"].stringValue
@@ -83,4 +85,10 @@ struct ArticlesPage: Mappable {
 
 extension Data: Mappable {
   public init(json: JSON) { self =  Data.init() }
+}
+
+extension Article: Equatable {
+  static func ==(lhs: Article, rhs: Article) -> Bool {
+    return lhs.id == rhs.id
+  }
 }

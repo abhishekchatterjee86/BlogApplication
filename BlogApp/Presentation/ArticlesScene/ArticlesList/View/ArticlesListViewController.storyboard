@@ -10,7 +10,7 @@
         <scene sceneID="7Hh-tC-Rkg">
             <objects>
                 <tableViewController id="sfu-MP-rop" customClass="ArticlesListViewController" customModule="BlogApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wu0-2D-BSj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wu0-2D-BSj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -73,9 +73,6 @@ specimen book.</string>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article url goes here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsl-jC-3lA">
                                                     <rect key="frame" x="0.0" y="402" width="374" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="127" id="9SJ-qE-uPM"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -128,6 +125,7 @@ specimen book.</string>
                                     <outlet property="articleUrlLabel" destination="Wsl-jC-3lA" id="hir-Zr-uTc"/>
                                     <outlet property="avatarImageView" destination="Z96-gK-xjX" id="Qsa-Jg-aVn"/>
                                     <outlet property="commentsLabel" destination="ZzD-PO-VKp" id="mBf-dc-YLz"/>
+                                    <outlet property="createdDateLabel" destination="xAw-rl-na4" id="d1N-0d-Xvj"/>
                                     <outlet property="likesLabel" destination="zRg-dW-iHb" id="geL-fp-Fex"/>
                                     <outlet property="userDesignationLabel" destination="cAW-ij-bzp" id="tPR-fh-A5e"/>
                                     <outlet property="userNameLabel" destination="r3w-RB-nyN" id="t5n-7L-Ic6"/>

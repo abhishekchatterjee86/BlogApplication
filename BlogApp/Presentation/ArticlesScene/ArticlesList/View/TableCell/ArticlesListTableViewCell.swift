@@ -14,6 +14,7 @@ class ArticlesListTableViewCell: UITableViewCell {
   
   @IBOutlet private var avatarImageView: UIImageView!
   @IBOutlet private var userNameLabel: UILabel!
+  @IBOutlet private var createdDateLabel: UILabel!
   @IBOutlet private var userDesignationLabel: UILabel!
   @IBOutlet private var articleImageView: UIImageView!
   @IBOutlet private var articleContentLabel: UILabel!
@@ -36,6 +37,7 @@ class ArticlesListTableViewCell: UITableViewCell {
     
     userNameLabel.text = viewModel.userName
     userDesignationLabel.text = viewModel.userDesignation
+    createdDateLabel.text = viewModel.createdDate
     articleContentLabel.text = viewModel.articleContent
     articleTitleLabel.text = viewModel.articleTitle
     articleUrlLabel.text = viewModel.articleUrl
@@ -66,6 +68,7 @@ class ArticlesListTableViewCell: UITableViewCell {
       if case let .success(data) = result {
         self.articleImageView.image = UIImage(data: data)
       }
+      self.imageLoadTask = nil
     }
   }
   
