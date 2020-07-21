@@ -6,7 +6,7 @@
 //  Copyright © 2020 Abhishek Chatterjee. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct UsersListViewModelClosures {
 }

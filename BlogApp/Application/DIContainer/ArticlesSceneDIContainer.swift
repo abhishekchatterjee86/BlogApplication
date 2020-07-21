@@ -61,6 +61,16 @@ final class ArticlesSceneDIContainer {
     return DefaultUsersListViewModel(usersUseCase: makeFetchUsersUseCase())
   }
   
+  // MARK: - User Details
+  func makeUserDetailsViewController(user: User) -> UIViewController {
+      return UserDetailsViewController.create(with: makeUserDetailsViewModel(user: user))
+  }
+  
+  func makeUserDetailsViewModel(user: User) -> UserDetailsViewModel {
+      return DefaultUserDetailsViewModel(user: user,
+                                          imagesRepository: makeImagesRepository())
+  }
+  
   // MARK: - Flow Coordinators
   func makeArticlesListFlowCoordinator(navigationController: UINavigationController) -> ArticlesListFlowCoordinator {
     return ArticlesListFlowCoordinator(navigationController: navigationController,

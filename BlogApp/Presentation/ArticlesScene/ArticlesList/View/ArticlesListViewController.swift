@@ -48,7 +48,7 @@ class ArticlesListViewController: UITableViewController, StoryboardInstantiable,
   }
   
   @objc func showUsersList() {
-    viewModel.didSelectUsersList()
+    viewModel.didShowUsersList()
   }
   
   @objc func loadMore() {
@@ -90,5 +90,9 @@ extension ArticlesListViewController {
               imagesRepository: imagesRepository)
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      viewModel.didSelectUsersList(at: indexPath.row)
   }
 }

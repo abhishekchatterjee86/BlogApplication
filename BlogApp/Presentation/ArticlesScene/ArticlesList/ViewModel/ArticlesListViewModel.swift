@@ -6,10 +6,11 @@
 //  Copyright © 2020 Abhishek Chatterjee. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct ArticlesListViewModelClosures {
   let showUsersList: () -> (Void)
+  let showUserDetails: (User) -> Void
 }
 
 enum ArticleListViewModelLoading {
@@ -20,7 +21,8 @@ enum ArticleListViewModelLoading {
 protocol ArticlesListViewModelInput {
   func didLoadNextPage()
   func didFetchArticles()
-  func didSelectUsersList()
+  func didShowUsersList()
+  func didSelectUsersList(at index: Int)
 }
 
 protocol ArticlesListViewModelOutput {
@@ -42,6 +44,7 @@ final class DefaultArticlesListViewModel: ArticlesListViewModel {
   private let articlesUseCase: FetchArticlesUseCase
   private let closures: ArticlesListViewModelClosures?
   
+  private var pages: [Article] = []
   private var articlesLoadTask: Cancelable? { willSet { articlesLoadTask?.cancel() } }
   
   // MARK: - OUTPUT
@@ -64,6 +67,7 @@ final class DefaultArticlesListViewModel: ArticlesListViewModel {
   // MARK: - Private
   
   private func appendArticle(_ page: ArticlesPage) {
+    pages = page.articles
     currentPage = currentPage + 1
     if page.articles.count == 0 {
       currentPage = 0
@@ -115,7 +119,11 @@ extension DefaultArticlesListViewModel {
     load(loadingType: .fullScreen)
   }
   
-  func didSelectUsersList() {
+  func didShowUsersList() {
     closures?.showUsersList()
+  }
+  
+  func didSelectUsersList(at index: Int) {
+    closures?.showUserDetails(pages[index].user)
   }
 }
