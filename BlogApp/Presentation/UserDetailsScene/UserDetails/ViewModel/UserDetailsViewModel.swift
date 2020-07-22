@@ -19,6 +19,7 @@ protocol UserDetailsViewModelOutput {
   var avatarImage: Observable<Data?> { get }
   var isAvatarImageHidden: Bool { get }
   var userDescription: String { get }
+  var screenTitle: String { get }
 }
 
 protocol UserDetailsViewModel: UserDetailsViewModelInput, UserDetailsViewModelOutput { }
@@ -35,7 +36,8 @@ final class DefaultUserDetailsViewModel: UserDetailsViewModel {
   let userDescription: String
   let avatarImage: Observable<Data?> = Observable(nil)
   let isAvatarImageHidden: Bool
-  
+  let screenTitle = NSLocalizedString("User Profile", comment: "")
+
   init(user: User,
        imagesRepository: ImagesRepository) {
     self.userName = user.firstName + user.lastName

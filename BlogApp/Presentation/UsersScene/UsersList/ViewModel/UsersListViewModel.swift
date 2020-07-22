@@ -9,6 +9,7 @@
 import Foundation
 
 struct UsersListViewModelClosures {
+  let showUserDetails: (User) -> Void
 }
 
 enum UsersListViewModelLoading {
@@ -19,6 +20,7 @@ enum UsersListViewModelLoading {
 protocol UsersListViewModelInput {
   func didLoadNextPage()
   func didFetchUsersList()
+  func didSelectUsersList(at index: Int)
 }
 
 protocol UsersListViewModelOutput {
@@ -40,6 +42,7 @@ final class DefaultUsersListViewModel: UsersListViewModel {
   private let usersUseCase: FetchUsersUseCase
   private let closures: UsersListViewModelClosures?
   
+  private var users: [User] = []
   private var usersLoadTask: Cancelable? { willSet { usersLoadTask?.cancel() } }
   
   // MARK: - OUTPUT
@@ -62,6 +65,7 @@ final class DefaultUsersListViewModel: UsersListViewModel {
   // MARK: - Private
   
   private func appendArticle(_ page: UsersPage) {
+    users = page.users
     currentPage = currentPage + 1
     if page.users.count == 0 {
       currentPage = 0
@@ -111,5 +115,9 @@ extension DefaultUsersListViewModel {
   
   func didFetchUsersList() {
     load(loadingType: .fullScreen)
+  }
+  
+  func didSelectUsersList(at index: Int) {
+    closures?.showUserDetails(users[index])
   }
 }

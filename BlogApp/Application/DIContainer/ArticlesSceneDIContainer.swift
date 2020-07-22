@@ -17,6 +17,9 @@ final class ArticlesSceneDIContainer {
   
   private let dependencies: Dependencies
   
+  // MARK: - Persistent Storage
+  lazy var articlesResponseCache: ArticlesResponseStorage = CoreDataArticlesResponseStorage()
+  
   init(dependencies: Dependencies) {
     self.dependencies = dependencies
   }
@@ -32,7 +35,7 @@ final class ArticlesSceneDIContainer {
   
   // MARK: - Repositories
   func makeArticlesListRepository() -> ArticlesListRepository {
-    return DefaultArticlesListRepository(dataTransferService: dependencies.apiDataTransferService)
+    return DefaultArticlesListRepository(dataTransferService: dependencies.apiDataTransferService, cache: articlesResponseCache)
   }
   
   func makeImagesRepository() -> ImagesRepository {
@@ -58,7 +61,7 @@ final class ArticlesSceneDIContainer {
   }
   
   func makeUsersListViewModel(closures: UsersListViewModelClosures) -> UsersListViewModel {
-    return DefaultUsersListViewModel(usersUseCase: makeFetchUsersUseCase())
+    return DefaultUsersListViewModel(usersUseCase: makeFetchUsersUseCase(), closures: closures)
   }
   
   // MARK: - User Details

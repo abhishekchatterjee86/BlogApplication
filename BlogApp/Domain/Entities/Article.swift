@@ -9,15 +9,17 @@
 import Foundation
 import SwiftyJSON
 
-struct Article: Mappable {
+struct Article {
   let id: String
   let content: String
   let createdAt: Date
   let comments: Int
   let likes: Int
   let media: Media?
-  let user: User
-  
+  let user: User?
+}
+
+extension Article: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     content = json["content"].stringValue
@@ -25,18 +27,20 @@ struct Article: Mappable {
     comments = json["comments"].intValue
     likes = json["likes"].intValue
     media = json["media"].array?.first.map({ Media(json: $0) })
-    user = (json["user"].array?.first.map({ User(json: $0) }))!
+    user = (json["user"].array?.first.map({ User(json: $0) }))
   }
 }
 
-struct Media: Mappable {
+struct Media {
   let id: String
   let blogId: String
   let createdAt: Date
   let imagePath: String
   let title: String
   let mediaUrl: String
-  
+}
+
+extension Media: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     blogId = json["blogId"].stringValue
@@ -49,9 +53,11 @@ struct Media: Mappable {
   }
 }
 
-struct ArticlesPage: Mappable {
+struct ArticlesPage{
   let articles: [Article]
+}
 
+extension ArticlesPage: Mappable  {
   init(json: JSON) {
     articles = json.arrayValue.map({ Article.init(json: $0) })
   }

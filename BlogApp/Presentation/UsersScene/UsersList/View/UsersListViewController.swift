@@ -80,4 +80,8 @@ extension UsersListViewController {
     
     return cell
   }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      viewModel.didSelectUsersList(at: indexPath.row)
+  }
 }

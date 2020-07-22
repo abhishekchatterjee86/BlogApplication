@@ -26,7 +26,9 @@ final class UserDetailsViewController: UIViewController, StoryboardInstantiable 
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    title = viewModel.screenTitle
+    avatarImageView.layer.cornerRadius = 100.0
+
     bind(to: viewModel)
   }
   

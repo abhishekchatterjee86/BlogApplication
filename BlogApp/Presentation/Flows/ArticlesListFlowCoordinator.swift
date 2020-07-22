@@ -37,7 +37,7 @@ class ArticlesListFlowCoordinator {
   }
   
   private func showUsersList() {
-    let closures = UsersListViewModelClosures()
+    let closures = UsersListViewModelClosures(showUserDetails: showUserDetails)
     
     let vc = dependencies.makeUsersListViewController(closures: closures)
     navigationController?.pushViewController(vc, animated: true)

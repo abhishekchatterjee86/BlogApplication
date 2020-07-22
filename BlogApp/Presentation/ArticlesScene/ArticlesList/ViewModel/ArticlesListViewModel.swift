@@ -81,6 +81,7 @@ final class DefaultArticlesListViewModel: ArticlesListViewModel {
     
     articlesLoadTask = articlesUseCase.execute(
       requestValue: .init(page: nextPage),
+      cached: appendArticle,
       completion: { result in
         switch result {
         case .success(let pages):
@@ -124,6 +125,6 @@ extension DefaultArticlesListViewModel {
   }
   
   func didSelectUsersList(at index: Int) {
-    closures?.showUserDetails(pages[index].user)
+    closures?.showUserDetails(pages[index].user!)
   }
 }

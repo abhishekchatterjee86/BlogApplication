@@ -10,6 +10,7 @@ import Foundation
 
 protocol FetchArticlesUseCase {
   func execute(requestValue: FetchArticlesUseCaseRequestValue,
+               cached: @escaping (ArticlesPage) -> Void,
                completion: @escaping (Result<ArticlesPage, Error>) -> Void) -> Cancelable?
 }
 
@@ -23,9 +24,11 @@ final class DefaultFetchArticlesUseCase: FetchArticlesUseCase {
   }
   
   func execute(requestValue: FetchArticlesUseCaseRequestValue,
+               cached: @escaping (ArticlesPage) -> Void,
                completion: @escaping (Result<ArticlesPage, Error>) -> Void) -> Cancelable? {
     
     return articlesRepository.fetchArticlesList(page: requestValue.page,
+                                                cached: cached,
                                                 completion: { result in completion(result) })
   }
 }

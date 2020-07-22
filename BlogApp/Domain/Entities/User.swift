@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct User: Mappable {
+struct User {
   let id: String
   let blogId: String
   let createdAt: Date
@@ -19,7 +19,9 @@ struct User: Mappable {
   let city: String
   let designation: String
   let about: String
-  
+}
+
+extension User: Mappable {
   init(json: JSON) {
     id = json["id"].stringValue
     blogId = json["blogId"].stringValue

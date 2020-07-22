@@ -11,5 +11,6 @@ import Foundation
 protocol ArticlesListRepository {
   @discardableResult
   func fetchArticlesList(page: Int,
+                         cached: @escaping (ArticlesPage) -> Void,
                          completion: @escaping (Result<ArticlesPage, Error>) -> Void) -> Cancelable?
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArticleResponseEntity" representedClassName="ArticleResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="comments" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="articlesResponse" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticlesPageResponseEntity" inverseName="articles" inverseEntity="ArticlesPageResponseEntity"/>
+        <relationship name="media" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaResponseEntity" inverseName="article" inverseEntity="MediaResponseEntity"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserResponseEntity" inverseName="article" inverseEntity="UserResponseEntity"/>
+    </entity>
+    <entity name="ArticlesPageResponseEntity" representedClassName="ArticlesPageResponseEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ArticleResponseEntity" inverseName="articlesResponse" inverseEntity="ArticleResponseEntity"/>
+        <relationship name="request" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ArticlesRequestEntity" inverseName="response" inverseEntity="ArticlesRequestEntity"/>
+    </entity>
+    <entity name="ArticlesRequestEntity" representedClassName="ArticlesRequestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="page" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticlesPageResponseEntity" inverseName="request" inverseEntity="ArticlesPageResponseEntity"/>
+    </entity>
+    <entity name="MediaResponseEntity" representedClassName="MediaResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="blogId" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imagePath" optional="YES" attributeType="String"/>
+        <attribute name="mediaUrl" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticleResponseEntity" inverseName="media" inverseEntity="ArticleResponseEntity"/>
+    </entity>
+    <entity name="UserResponseEntity" representedClassName="UserResponseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="about" optional="YES" attributeType="String"/>
+        <attribute name="avatarImagePath" optional="YES" attributeType="String"/>
+        <attribute name="blogId" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="designation" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArticleResponseEntity" inverseName="user" inverseEntity="ArticleResponseEntity"/>
+    </entity>
+    <elements>
+        <element name="ArticleResponseEntity" positionX="-178.79296875" positionY="-113.90234375" width="128" height="163"/>
+        <element name="ArticlesPageResponseEntity" positionX="7.8828125" positionY="-154.3671875" width="128" height="73"/>
+        <element name="MediaResponseEntity" positionX="-65.83203125" positionY="144.59375" width="128" height="148"/>
+        <element name="UserResponseEntity" positionX="175.78515625" positionY="77.98828125" width="128" height="193"/>
+        <element name="ArticlesRequestEntity" positionX="201.97265625" positionY="-94.2265625" width="128" height="73"/>
+    </elements>
+</model>
